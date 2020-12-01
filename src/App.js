@@ -20,21 +20,21 @@ function App() {
   },[]);
 
   const getTodos = async ()=>{
-    await Axios.get("http://localhost:5000/get_tasks")
+    await Axios.get("/get_tasks")
     .then(response=>{ dispatch(setTodos(response.data));  })
     .catch(err => { console.log(`error occoured in fetching posts ${err}` ) } )
     
   }
 
   const addTask = async()=>{
-    await Axios.post("http://localhost:5000/add_task",todo)
+    await Axios.post("/add_task",todo)
     .then(response=>{ dispatch(addTodo(response.data)); console.log(response.data)  })
     .catch(err => { console.log(`error occoured in fetching posts ${err}` ) } )    
   }
 
   const deleteTask = async(item)=>{
     console.log(item)
-    await Axios.post("http://localhost:5000/delete_task",item)
+    await Axios.post("/delete_task",item)
     .then(response=>{ console.log(response.data); })
     .catch(err => { console.log(`error occoured in deleting task ${err}` ) } )   
     dispatch(deleteTodo(item))
@@ -42,7 +42,7 @@ function App() {
   }
   const updateTask = async(item) => {
     console.log(item)
-    await Axios.post("http://localhost:5000/update_task",item)
+    await Axios.post("/update_task",item)
     .then(response=>{ console.log(response.data); })
     .catch(err => { console.log(`error occoured in deleting task ${err}` ) } )   
     dispatch(updateTodo(item))
